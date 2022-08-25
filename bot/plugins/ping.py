@@ -13,7 +13,7 @@ async def ping_handler(c: Client, m: "types.Message"):
     await add_user_to_database(c, m)
     await c.send_flooded_message(
         chat_id=m.chat.id,
-        text=f"""Hi {message.from_user.mention}
+        text=f"""Hi {m.mention}
 I Can Rename Files Without Downloading And Permanent Thumb Support.
 
 Send Me Any Files And Enjoyy""",
