@@ -13,6 +13,25 @@ from bot.core.display import humanbytes
 from bot.core.handlers.settings import show_settings
 
 
+
+Client.on_callback_query()
+async def callback(bot, msg):
+   data = msg.data
+   if data == "start":
+       await msg.message.edit(      
+           text=f"""Hi {message.from_user.mention}
+Iam {mr.mention}
+I Can Rename Files Without Downloading And Permanent Thumb Support.
+Send Me Any Files And Enjoyy""",
+        reply_markup=types.InlineKeyboardMarkup([[
+            InlineKeyboardButton("BOT OWNER", user_id=OWNER_ID),
+            InlineKeyboardButton("UPDATES", url="https://t.me/Beta_BotZ")
+            ],[           
+            InlineKeyboardButton("SHOW SETTINGS", callback_data="showSettings"),
+            ]]
+            )
+        )
+
 @Client.on_callback_query()
 async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
     if cb.data == "showSettings":
