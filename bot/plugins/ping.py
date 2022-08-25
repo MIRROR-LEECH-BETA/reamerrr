@@ -10,9 +10,8 @@ OWNER_ID = "5172114510"
 @Client.on_message(filters.private & filters.command("start")) 
 async def start(bot, message):
     mr = await bot.get_me() 
-    await message.reply_photo(
-        photo="https://graph.org/file/a0757f99b243b1df37507.jpg",
-        caption=f"""Hi {message.from_user.mention}
+    await message.reply_text(
+        text=f"""Hi {message.from_user.mention}
 I Can Rename Files Without Downloading And Permanent Thumb Support.
 
 Send Me Any Files And Enjoyy""",
