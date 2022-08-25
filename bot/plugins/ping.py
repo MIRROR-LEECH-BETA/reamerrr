@@ -16,7 +16,7 @@ async def ping_handler(c: Client, m: "types.Message"):
         text=f"""Hi {message.from_user.mention}
 I Can Rename Files Without Downloading And Permanent Thumb Support.
 
-Send Me Any Files And Enjoyy"""
+Send Me Any Files And Enjoyy""",
         reply_markup=types.InlineKeyboardMarkup([[
             InlineKeyboardButton("BOT OWNER", ),
             InlineKeyboardButton("UPDATES", url="https://t.me/Beta_BotZ")
