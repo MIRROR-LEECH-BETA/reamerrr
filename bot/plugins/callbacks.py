@@ -132,7 +132,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
             parse_mode="Markdown",
             disable_web_page_preview=True,
             reply_markup=types.InlineKeyboardMarkup(
-                [[types.InlineKeyboardButton("Close Message", callback_data="closeMessage")]]
+                [[types.InlineKeyboardButton("Back", callback_data="start")]]
             )
         )
     elif cb.data == "closeMessage":
