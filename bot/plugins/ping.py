@@ -16,7 +16,7 @@ I Can Rename Files Without Downloading And Permanent Thumb Support.
 
 Send Me Any Files And Enjoyy""",
         reply_markup=types.InlineKeyboardMarkup([[
-            InlineKeyboardButton("BOT OWNER", url="t.me/about_jeol"),
+            InlineKeyboardButton("BOT OWNER", user_id=OWNER_ID),
             InlineKeyboardButton("UPDATES", url="https://t.me/Beta_BotZ")
             ],[           
             InlineKeyboardButton("SHOW SETTINGS", callback_data="showSettings"),
