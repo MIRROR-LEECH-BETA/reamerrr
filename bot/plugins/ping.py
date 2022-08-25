@@ -10,7 +10,7 @@ from bot.core.db.add import add_user_to_database
 async def start(bot, message):
     mr = await bot.get_me() 
     await message.reply_photo(
-        photo=random.choice(PHOTO),
+        photo="https://graph.org/file/a0757f99b243b1df37507.jpg",
         caption=f"""Hi {mr.mention}
 I Can Rename Files Without Downloading And Permanent Thumb Support.
 
