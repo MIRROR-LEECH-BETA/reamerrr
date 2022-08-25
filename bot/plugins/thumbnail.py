@@ -27,7 +27,7 @@ async def set_thumbnail(c: Client, m: "types.Message"):
     if not m.from_user:
         return await m.reply_text("I don't know about you sar :(")
     await add_user_to_database(c, m)
-    await db.set_thumbnail(m.from_user.id, m.message.photo.file_id)
+    await db.set_thumbnail(m.from_user.id, m.photo.file_id)
     await m.reply_text("Okay,\n"
                        "I will use this image as custom thumbnail.",
                        reply_markup=types.InlineKeyboardMarkup(
