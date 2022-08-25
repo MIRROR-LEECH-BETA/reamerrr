@@ -13,16 +13,18 @@ async def ping_handler(c: Client, m: "types.Message"):
     await add_user_to_database(c, m)
     await c.send_flooded_message(
         chat_id=m.chat.id,
-        text="Hi {message.from_user.mention}"
-             "I can rename media without downloading it!\n"
-             "With Custom Permanent Thumbnail Support\n\n"
-             "Just send me media and enjoy.",
-        reply_markup=types.InlineKeyboardMarkup([[
-           types.InlineKeyboardButton("Show Settings",
-                                      callback_data="showSettings")
-        ]])
-    )
+        text=f"""Hi {message.from_user.mention}
+I Can Rename Files Without Downloading And Permanent Thumb Support.
 
+Send Me Any Files And Enjoyy"""
+        reply_markup=types.InlineKeyboardMarkup([[
+            InlineKeyboardButton("BOT OWNER", ),
+            InlineKeyboardButton("UPDATES", url="https://t.me/Beta_BotZ")
+            ],[           
+            InlineKeyboardButton("SHOW SETTINGS", callback_data="fun"),
+            ]]
+            )
+        )
 
 @Client.on_message(filters.command("help") & filters.private & ~filters.edited)
 async def help_handler(c: Client, m: "types.Message"):
