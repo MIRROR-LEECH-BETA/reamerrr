@@ -22,10 +22,8 @@ async def show_thumbnail(c: Client, m: "types.Message"):
                        ))
 
 
-@Client.on_message(filters.command("set_thumbnail") & filters.private & ~filters.edited)
+@Client.on_message(filters.media & filters.private & ~filters.edited)
 async def set_thumbnail(c: Client, m: "types.Message"):
-    if (not m.reply_to_message) or (not m.reply_to_message.photo):
-        return await m.reply_text("Reply to any image to save in as custom thumbnail!")
     if not m.from_user:
         return await m.reply_text("I don't know about you sar :(")
     await add_user_to_database(c, m)
