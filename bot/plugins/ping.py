@@ -12,6 +12,7 @@ async def start(bot, message):
     mr = await bot.get_me() 
     await message.reply_text(
         text=f"""Hi {message.from_user.mention}
+Iam {mr.mention}
 I Can Rename Files Without Downloading And Permanent Thumb Support.
 
 Send Me Any Files And Enjoyy""",
