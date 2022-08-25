@@ -8,12 +8,13 @@ from bot.core.db.add import add_user_to_database
 
 @Client.on_message(filters.command(["start", "ping"]) & filters.private & ~filters.edited)
 async def ping_handler(c: Client, m: "types.Message"):
+    mr = await Client.get_me()
     if not m.from_user:
         return await m.reply_text("I don't know about you sar :(")
     await add_user_to_database(c, m)
     await c.send_flooded_message(
         chat_id=m.chat.id,
-        text=f"""Hi {m.mention}
+        text=f"""Hi {mr.mention}
 I Can Rename Files Without Downloading And Permanent Thumb Support.
 
 Send Me Any Files And Enjoyy""",
