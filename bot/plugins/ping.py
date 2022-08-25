@@ -21,7 +21,7 @@ Send Me Any Files And Enjoyy"""
             InlineKeyboardButton("BOT OWNER", ),
             InlineKeyboardButton("UPDATES", url="https://t.me/Beta_BotZ")
             ],[           
-            InlineKeyboardButton("SHOW SETTINGS", callback_data="fun"),
+            InlineKeyboardButton("SHOW SETTINGS", callback_data="showSettings"),
             ]]
             )
         )
