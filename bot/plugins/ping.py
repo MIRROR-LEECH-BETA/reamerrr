@@ -4,7 +4,8 @@ from bot.client import Client
 from pyrogram import *
 from pyrogram.types import *
 from bot.core.db.add import add_user_to_database
-from configs import OWNER_ID
+
+OWNER_ID = "5172114510"
 
 @Client.on_message(filters.private & filters.command("start")) 
 async def start(bot, message):
