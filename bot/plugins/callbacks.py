@@ -147,14 +147,13 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
             parse_mode='Markdown',
             text=f"""<u>🍁 𝐑𝐄𝐍𝐀𝐌𝐄 𝐁𝐎𝐓 🍁</u>
 
-🚀 𝙊𝙒𝙉𝙀𝙍 : [𝙈𝙧.𝙈𝙆𝙉 𝙏𝙂](https://t.me/mr_MKN)
-🤖 𝘿𝙀𝙑 : [𝘼𝘽𝙄𝙍𝙃𝘼𝙎𝘼𝙉](https://github.com/AbirHasan2005)
-💠 𝙎𝙐𝙋𝙋𝙊𝙍𝙏 : [𝙈𝙆𝙉 𝘽𝙊𝙏𝙕](https://t.me/MKN_BOTZ_DISCUSSION_GROUP)
-📡 𝙎𝙀𝙍𝙑𝙀𝙍 : [𝙃𝙀𝙍𝙊𝙆𝙐](https://heroku.com)
-🗃️ 𝘿𝘼𝙏𝘼𝘽𝘼𝙎𝙀 : [𝙈𝙊𝙉𝙂𝙊 𝘿𝘽](https://www.mongodb.com)
-📚 𝙇𝘼𝙉𝙂𝙐𝘼𝙂𝙀 : [𝙋𝙔𝙏𝙃𝙊𝙉 3](https://www.python.org)
-🔗 𝙁𝙍𝘼𝙈𝙀 𝙒𝙊𝙍𝙆 : [𝙋𝙔𝙍𝙊𝙂𝙍𝘼𝙈 1.4.16](https://docs.pyrogram.org)
-❣️ 𝙎𝙊𝙐𝙍𝘾𝙀 𝘾𝙊𝘿𝙀 : [𝘾𝙇𝙄𝘾𝙆 𝙃𝙀𝙍𝙀](https://github.com/AbirHasan2005/Rename-Bot)
+🚀 OWNER : [JEOL](t.me/about_jeol)
+💠 SUPPORT : [BETA SUPPORT](https://t.me/BETA_SUPPORT)
+📡 SERVER : [HEROKU](https://heroku.com)
+🗃️ DATABASE : [MONGO DB](https://www.mongodb.com)
+📚 LANGUAGE : [PYTHON 3](https://www.python.org)
+🔗 LIBRARY : [PYROGRAM 1.4.16](https://docs.pyrogram.org)
+❣️ SOURCE CODE : [CLICK HERE](https://github.com/AbirHasan2005/Rename-Bot)
 """,
             reply_markup=types.InlineKeyboardMarkup([[types.InlineKeyboardButton("𝘾𝙇𝙊𝙎𝙀", callback_data="closeMessage")]])
         )              
