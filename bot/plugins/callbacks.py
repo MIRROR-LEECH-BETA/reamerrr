@@ -12,25 +12,30 @@ from bot.core.file_info import (
 from bot.core.display import humanbytes
 from bot.core.handlers.settings import show_settings
 
+import time
+import mimetypes
+import traceback
+from bot.client import (
+    Client
+)
+from pyrogram import filters
+from pyrogram.file_id import FileId
+from pyrogram.types import Message, ForceReply, InlineKeyboardButton, InlineKeyboardMarkup
+from bot.core.file_info import (
+    get_media_file_id,
+    get_media_file_size,
+    get_media_file_name,
+    get_file_type,
+    get_file_attr
+)
+from configs import Config
+from bot.core.display import progress_for_pyrogram
+from bot.core.db.database import db
+from bot.core.db.add import add_user_to_database
+from bot.core.handlers.not_big import handle_not_big
+from bot.core.handlers.time_gap import check_time_gap
+from bot.core.handlers.big_rename import handle_big_rename
 
-
-Client.on_callback_query()
-async def callback(bot, msg):
-   data = msg.data
-   if data == "start":
-       await msg.message.edit(      
-           text=f"""Hi {message.from_user.mention}
-Iam {mr.mention}
-I Can Rename Files Without Downloading And Permanent Thumb Support.
-Send Me Any Files And Enjoyy""",
-        reply_markup=types.InlineKeyboardMarkup([[
-            InlineKeyboardButton("BOT OWNER", user_id=OWNER_ID),
-            InlineKeyboardButton("UPDATES", url="https://t.me/Beta_BotZ")
-            ],[           
-            InlineKeyboardButton("SHOW SETTINGS", callback_data="showSettings"),
-            ]]
-            )
-        )
 
 @Client.on_callback_query()
 async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
@@ -45,7 +50,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
             await cb.answer()
             await c.send_photo(cb.message.chat.id, thumbnail, "Custom Thumbnail",
                                reply_markup=types.InlineKeyboardMarkup([[
-                                   types.InlineKeyboardButton("Delete Thumbnail",
+                                   types.InlineKeyboardButton("𝘿𝙀𝙇𝙀𝙏𝙀 𝙏𝙃𝙐𝙈𝘽𝙉𝘼𝙄𝙇",
                                                               callback_data="deleteThumbnail")
                                ]]))
     elif cb.data == "deleteThumbnail":
@@ -65,7 +70,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
             await cb.message.edit("Okay!\n"
                                   "Now I will apply this thumbnail to next uploads.",
                                   reply_markup=types.InlineKeyboardMarkup(
-                                      [[types.InlineKeyboardButton("Show Settings",
+                                      [[types.InlineKeyboardButton("𝙎𝙃𝙊𝙒 𝙎𝙀𝙏𝙏𝙄𝙉𝙂𝙎",
                                                                    callback_data="showSettings")]]
                                   ))
     elif cb.data == "setCustomCaption":
@@ -83,7 +88,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
         await db.set_caption(cb.from_user.id, user_input_msg.text.markdown)
         await cb.message.edit("Custom Caption Added Successfully!",
                               reply_markup=types.InlineKeyboardMarkup(
-                                  [[types.InlineKeyboardButton("Show Settings",
+                                  [[types.InlineKeyboardButton("𝙎𝙃𝙊𝙒 𝙎𝙀𝙏𝙏𝙄𝙉𝙂𝙎",
                                                                callback_data="showSettings")]]
                               ))
     elif cb.data == "triggerApplyCaption":
@@ -108,7 +113,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
                 text=caption,
                 parse_mode="Markdown",
                 reply_markup=types.InlineKeyboardMarkup([[
-                    types.InlineKeyboardButton("Go Back", callback_data="showSettings")
+                    types.InlineKeyboardButton("𝘽𝘼𝘾𝙆", callback_data="showSettings")
                 ]])
             )
     elif cb.data == "triggerUploadMode":
@@ -132,8 +137,104 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
             parse_mode="Markdown",
             disable_web_page_preview=True,
             reply_markup=types.InlineKeyboardMarkup(
-                [[types.InlineKeyboardButton("Back", callback_data="start")]]
+                [[types.InlineKeyboardButton("𝘾𝙇𝙊𝙎𝙀", callback_data="closeMessage")]]
             )
         )
     elif cb.data == "closeMessage":
         await cb.message.delete(True)
+    elif cb.data == "about":
+        await cb.message.edit(
+            parse_mode='Markdown',
+            text=f"""<u>🍁 𝐑𝐄𝐍𝐀𝐌𝐄 𝐁𝐎𝐓 🍁</u>
+
+🚀 𝙊𝙒𝙉𝙀𝙍 : [𝙈𝙧.𝙈𝙆𝙉 𝙏𝙂](https://t.me/mr_MKN)
+🤖 𝘿𝙀𝙑 : [𝘼𝘽𝙄𝙍𝙃𝘼𝙎𝘼𝙉](https://github.com/AbirHasan2005)
+💠 𝙎𝙐𝙋𝙋𝙊𝙍𝙏 : [𝙈𝙆𝙉 𝘽𝙊𝙏𝙕](https://t.me/MKN_BOTZ_DISCUSSION_GROUP)
+📡 𝙎𝙀𝙍𝙑𝙀𝙍 : [𝙃𝙀𝙍𝙊𝙆𝙐](https://heroku.com)
+🗃️ 𝘿𝘼𝙏𝘼𝘽𝘼𝙎𝙀 : [𝙈𝙊𝙉𝙂𝙊 𝘿𝘽](https://www.mongodb.com)
+📚 𝙇𝘼𝙉𝙂𝙐𝘼𝙂𝙀 : [𝙋𝙔𝙏𝙃𝙊𝙉 3](https://www.python.org)
+🔗 𝙁𝙍𝘼𝙈𝙀 𝙒𝙊𝙍𝙆 : [𝙋𝙔𝙍𝙊𝙂𝙍𝘼𝙈 1.4.16](https://docs.pyrogram.org)
+❣️ 𝙎𝙊𝙐𝙍𝘾𝙀 𝘾𝙊𝘿𝙀 : [𝘾𝙇𝙄𝘾𝙆 𝙃𝙀𝙍𝙀](https://github.com/AbirHasan2005/Rename-Bot)
+""",
+            reply_markup=types.InlineKeyboardMarkup([[types.InlineKeyboardButton("𝘾𝙇𝙊𝙎𝙀", callback_data="closeMessage")]])
+        )              
+    elif cb.data == "rename":
+        user_id = cb.message.chat.id
+        date = cb.message.date
+        await cb.message.delete()
+        msgs = cb.message.reply_to_message
+        file = msgs.document or msgs.video or msgs.audio
+        dcid = FileId.decode(file.file_id).dc_id
+        file_name = get_media_file_name(msgs)
+        await cb.message.reply_text(f"**◈ Current File Name :** `{file_name}`\n\n**◈ DC ID :** `{dcid}`\n\n**__Please enter the new filename with extension and reply this message..**__",	
+        reply_to_message_id=cb.message.reply_to_message.message_id,  
+        reply_markup=ForceReply(True))
+
+
+@Client.on_message(filters.private & filters.reply)
+async def rename_func(c,m):
+    if (m.reply_to_message.reply_markup) and isinstance(m.reply_to_message.reply_markup, ForceReply):
+        user_input_msg = m.text
+        await m.delete()
+        media = await c.get_messages(m.chat.id,m.reply_to_message.message_id)
+        file = media.reply_to_message
+        _raw_file_name = get_media_file_name(file)
+        await m.reply_to_message.delete()
+        editable = await m.reply_text("processing..")
+        file_name = user_input_msg[:255]
+        is_big = get_media_file_size(file) > (10 * 1024 * 1024)
+        await editable.edit("Please Wait ...")
+    if not is_big:
+        _default_thumb_ = await db.get_thumbnail(m.from_user.id)
+        Image.open(_default_thumb_).convert("RGB").save(_default_thumb_)
+        img = Image.open(_default_thumb_)
+        img.resize((320, 320))
+        img.save(_default_thumb_, "JPEG")
+        if not _default_thumb_:
+            _m_attr = get_file_attr(file)
+            _default_thumb_ = _m_attr.thumbs[0].file_id \
+                if (_m_attr and _m_attr.thumbs) \
+                else None
+        await handle_not_big(c, m, get_media_file_id(file), file_name,
+                             editable, get_file_type(file), _default_thumb_)
+        return
+    file_type = get_file_type(file)
+    _c_file_id = FileId.decode(get_media_file_id(file))
+    try:
+        c_time = time.time()
+        file_id = await c.custom_upload(
+            file_id=_c_file_id,
+            file_size=get_media_file_size(file),
+            file_name=file_name,
+            progress=progress_for_pyrogram,
+            progress_args=(
+                "Uploading ...\n"
+                f"DC: {_c_file_id.dc_id}",
+                editable,
+                c_time
+            )
+        )
+        if not file_id:
+            return await editable.edit("Failed to Rename!\n\n"
+                                       "Maybe your file corrupted :(")
+        await handle_big_rename(c, m, file_id, file_name, editable, file_type)
+    except Exception as err:
+        print(err)
+        await editable.edit("Failed to Rename File!\n\n"
+                            f"**Error:** `{err}`\n\n"
+                            f"**Traceback:** `{traceback.format_exc()}`")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
