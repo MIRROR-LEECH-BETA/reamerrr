@@ -28,7 +28,6 @@ async def on_media_handler(c: Client, m: "types.Message"):
         text="**__What do you want me to do with this file?__**",
         reply_markup=types.InlineKeyboardMarkup(
             [[types.InlineKeyboardButton("✏️ 𝙍𝙀𝙉𝘼𝙈𝙀", callback_data="rename")],
-             [types.InlineKeyboardButton("ℹ️ 𝙈𝙀𝘿𝙄𝘼 𝙄𝙉𝙁𝙊", callback_data="showFileInfo")],
              [types.InlineKeyboardButton("❌ 𝘾𝘼𝙉𝘾𝙀𝙇", callback_data="closeMessage")]]
         ),
         disable_web_page_preview=True,
