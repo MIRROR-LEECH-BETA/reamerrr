@@ -28,7 +28,7 @@ async def set_thumbnail(c: Client, m: "types.Message"):
         return await m.reply_text("I don't know about you sar :(")
     await add_user_to_database(c, m)
     await db.set_thumbnail(m.from_user.id, m.photo.file_id)
-    await m.reply_text="CUSTOM THUMBNAIL SAVED SUCCESSFUL ✅️",
+    await m.reply_text("CUSTOM THUMBNAIL SAVED SUCCESSFUL ✅️",
                        reply_markup=types.InlineKeyboardMarkup(
                            [[types.InlineKeyboardButton("Delete Thumbnail",
                                                         callback_data="deleteThumbnail")]]
