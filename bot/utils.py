@@ -1,4 +1,4 @@
-from pyrogram import client
+from pyrogram import Client
 from pyrogram.errors import UserNotParticipant
 
 async def not_subscribed(_, client, message):
