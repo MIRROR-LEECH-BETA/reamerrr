@@ -17,7 +17,7 @@ class Config(object):
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "5839828216:AAEUzWEa1U257TO7_AOJC_aFEHCMYz_UaX4")
     DOWNLOAD_DIR = os.environ.get("DOWNLOAD_DIR", "./downloads")
     LOGGER = logging
-    OWNER_ID = int(os.environ.get("OWNER_ID", 5558249587))
+    OWNER_ID = int(os.environ.get("OWNER_ID", "5558249587"))
     PRO_USERS = list(set(int(x) for x in os.environ.get("PRO_USERS", "0").split()))
     PRO_USERS.append(OWNER_ID)
     MONGODB_URI = os.environ.get("MONGODB_URI", "mongodb+srv://Giveaway:Giveaway@cluster0.0qa2d.mongodb.net/?retryWrites=true&w=majority")
