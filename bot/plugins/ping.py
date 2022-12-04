@@ -10,7 +10,7 @@ async def ping_handler(c: Client, m: "types.Message"):
     await add_user_to_database(c, m)
     mr = await c.get_me() 
     await m.reply_photo(
-       photo="https://graph.org/file/a6afde8ea3176336a2e7c.jpg",
+       photo="https://graph.org/file/7f18f71076a3be3180cb3.jpg",
        caption=f"""Hi {m.from_user.mention}
 Iam {mr.mention}
 I Can Rename Files Without Downloading And Permanent Thumb Support.
