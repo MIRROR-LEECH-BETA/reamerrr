@@ -145,15 +145,15 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
     elif cb.data == "about":
         await cb.message.edit(
             parse_mode='Markdown',
-            text=f"""<u>🍁 𝐑𝐄𝐍𝐀𝐌𝐄 𝐁𝐎𝐓 🍁</u>
+            text=f"""🍁 𝐑𝐄𝐍𝐀𝐌𝐄 𝐁𝐎𝐓 🍁
 
-🚀 OWNER : [JEOL](t.me/about_jeol)
+🚀 OWNER : [JEOL](https://t.me/ABOUT_JEOL)
 💠 SUPPORT : [BETA SUPPORT](https://t.me/BETA_SUPPORT)
 📡 SERVER : [HEROKU](https://heroku.com)
 🗃️ DATABASE : [MONGO DB](https://www.mongodb.com)
 📚 LANGUAGE : [PYTHON 3](https://www.python.org)
 🔗 LIBRARY : [PYROGRAM 1.4.16](https://docs.pyrogram.org)
-❣️ SOURCE CODE : [CLICK HERE](https://github.com/AbirHasan2005/Rename-Bot)
+❣️ SOURCE CODE: [CLICK HERE](https://github.com/AbirHasan2005/Rename-Bot)
 """,
             reply_markup=types.InlineKeyboardMarkup([[types.InlineKeyboardButton("𝘾𝙇𝙊𝙎𝙀", callback_data="closeMessage")]])
         )              
