@@ -23,7 +23,7 @@ async def handle_not_big(
     if (not _db_caption) and (apply_caption is True):
         caption = m.reply_to_message.caption.markdown \
             if m.reply_to_message.caption \
-            else "**Developer: @AbirHasan2005**"
+            else f"**{file_name}**"
     elif _db_caption and (apply_caption is True):
         caption = _db_caption
     else:

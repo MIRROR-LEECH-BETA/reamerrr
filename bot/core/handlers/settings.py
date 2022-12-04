@@ -17,24 +17,28 @@ async def show_settings(m: "types.Message"):
     apply_caption = user_data.get("apply_caption", True)
     thumbnail = user_data.get("thumbnail", None)
     buttons_markup = [
-        [types.InlineKeyboardButton(f"Upload as Doc {'✅' if upload_as_doc else '❌'}",
+        [types.InlineKeyboardButton(f"𝙐𝙋𝙇𝙊𝘼𝘿 𝘼𝙎 𝙁𝙄𝙇𝙀 {'✅' if upload_as_doc else '❌'}",
                                     callback_data="triggerUploadMode")],
-        [types.InlineKeyboardButton(f"Apply Caption {'✅' if apply_caption else '❌'}",
+
+        [types.InlineKeyboardButton(f"𝘼𝙋𝙋𝙇𝙔 𝘾𝘼𝙋𝙏𝙄𝙊𝙉 {'✅' if apply_caption else '❌'}",
                                     callback_data="triggerApplyCaption")],
-        [types.InlineKeyboardButton(f"Apply Default Caption {'❌' if caption else '✅'}",
+
+        [types.InlineKeyboardButton(f"𝘼𝙋𝙋𝙇𝙔 𝘿𝙀𝙁𝘼𝙐𝙇𝙏 𝘾𝘼𝙋𝙏𝙄𝙊𝙉 {'❌' if caption else '✅'}",
                                     callback_data="triggerApplyDefaultCaption")],
-        [types.InlineKeyboardButton("Set Custom Caption",
+
+        [types.InlineKeyboardButton("𝙎𝙀𝙏 𝘾𝙐𝙎𝙏𝙊𝙈 𝘾𝘼𝙋𝙏𝙄𝙊𝙉",
                                     callback_data="setCustomCaption")],
-        [types.InlineKeyboardButton(f"{'Change' if thumbnail else 'Set'} Thumbnail",
+
+        [types.InlineKeyboardButton(f"{'𝘾𝙃𝘼𝙉𝙂𝙀' if thumbnail else '𝙎𝙀𝙏'} 𝙏𝙃𝙐𝙈𝘽𝙉𝘼𝙄𝙇",
                                     callback_data="setThumbnail")]
     ]
     if thumbnail:
-        buttons_markup.append([types.InlineKeyboardButton("Show Thumbnail",
+        buttons_markup.append([types.InlineKeyboardButton("𝙎𝙃𝙊𝙒 𝙏𝙃𝙐𝙈𝘽𝙉𝘼𝙇𝙄",
                                                           callback_data="showThumbnail")])
     if caption:
-        buttons_markup.append([types.InlineKeyboardButton("Show Caption",
+        buttons_markup.append([types.InlineKeyboardButton("𝙎𝙃𝙊𝙒 𝘾𝘼𝙋𝙏𝙄𝙊𝙉",
                                                           callback_data="showCaption")])
-    buttons_markup.append([types.InlineKeyboardButton("Close Message",
+    buttons_markup.append([types.InlineKeyboardButton("𝘾𝙇𝙊𝙎𝙀",
                                                       callback_data="closeMessage")])
 
     try:
