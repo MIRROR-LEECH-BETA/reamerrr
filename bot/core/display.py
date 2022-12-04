@@ -5,15 +5,15 @@ import time
 import asyncio
 import bot
 from typing import Union
-from pyrogram.types import Message, CallbackQuery
+from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup 
 from pyrogram.errors import FloodWait
 
 PROGRESS = """
-⏳ **Percentage:** `{0}%`
-✅ **Done:** `{1}`
-💠 **Total:** `{2}`
-📶 **Speed:** `{3}/s`
-🕰 **ETA:** `{4}`
+⏳ **𝙿𝙴𝚁𝙲𝙴𝙽𝚃𝙰𝙶𝙴:** `{0}%`
+✅️ **𝙳𝙾𝙽𝙴:** `{1}`
+🍁 **𝚃𝙾𝚃𝙰𝙻:** `{2}`
+🚀 **𝚂𝙿𝙴𝙴𝙳:** `{3}/s`
+🕛 **𝙴𝚂𝚃𝙸𝙼𝙰𝚃𝙴𝙳 𝚃𝙸𝙼𝙴:** `{4}`
 """
 
 
@@ -36,7 +36,7 @@ async def progress_for_pyrogram(
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-        progress = "[{0}{1}] \n".format(
+        progress = "{0}{1} \n".format(
             ''.join(["●" for _ in range(math.floor(percentage / 5))]),
             ''.join(["○" for _ in range(20 - math.floor(percentage / 5))])
             )
@@ -54,8 +54,9 @@ async def progress_for_pyrogram(
                 await message.edit(
                     text="**{}**\n\n {}".format(
                         ud_type,
-                        tmp
+                        tmp                        
                     ),
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("❌ 𝘾𝘼𝙉𝘾𝙀𝙇", callback_data="closeMessage")]]),        
                     parse_mode='markdown'
                 )
             except AttributeError:
@@ -65,6 +66,7 @@ async def progress_for_pyrogram(
                         ud_type,
                         tmp
                     ),
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("❌️ 𝘾𝘼𝙉𝘾𝙀𝙇", callback_data="closeMessage")]]),               
                     parse_mode='markdown'
                 )
         except FloodWait as e:
