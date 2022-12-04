@@ -66,7 +66,7 @@ class SendFloodedMessage:
             )
             return __SEND
         except FloodWait as e:
-            if e.x > 120:
+            if e.x > 60:
                 return None
             print(f"Sleeping for {e.x}s")
             await asyncio.sleep(e.x)

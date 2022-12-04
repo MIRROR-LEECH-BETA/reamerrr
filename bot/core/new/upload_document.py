@@ -54,9 +54,13 @@ class UploadDocument:
         :param status_message: Pass status string. Default: "📤 Uploading as Video ..."
         """
 
-        if not caption:
-            caption = f"**File Name:** `{os.path.basename(document)}`" \
-                      "\n\n**@AH_RenameBot**"
+        #if not caption:
+            #caption = f"{file_name} `{os.path.basename(document)}`"                      
+        
+        if caption:
+            caption = caption.format(filename= file_name)
+        else:
+            caption = f"{file_name} `{os.path.basename(document)}`"
         c_time = time.time()
         await self.send_document(
             chat_id=chat_id,
