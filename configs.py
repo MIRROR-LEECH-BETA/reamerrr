@@ -20,6 +20,7 @@ class Config(object):
     OWNER_ID = int(os.environ.get("OWNER_ID", "5558249587"))
     PRO_USERS = list(set(int(x) for x in os.environ.get("PRO_USERS", "0").split()))
     PRO_USERS.append(OWNER_ID)
-    MONGODB_URI = os.environ.get("MONGODB_URI", "mongodb+srv://LEECH:LEECH@cluster0.tfhutfu.mongodb.net/?retryWrites=true&w=majority")
+    FORCE_SUB = os.environ.get("FORCE_SUB", "beta_botz")
+    MONGODB_URI = os.environ.get("MONGODB_URI", "mongodb+srv://RENAME:RENAME@cluster0.0qshmty.mongodb.net/?retryWrites=true&w=majority")
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001545756568"))
     BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "True"))
