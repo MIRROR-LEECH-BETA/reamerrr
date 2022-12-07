@@ -1,6 +1,7 @@
 import logging 
 import logging.config
 from typing import Union
+from pyromod import listen
 from pyrogram import Client as RawClient
 from pyrogram.storage import Storage
 from configs import Config
